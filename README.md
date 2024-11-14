@@ -4,7 +4,7 @@
 
 1 `git clone git@github.com:simesaba80/kcl-cron.git`  
 2 `cd kcl-cron`  
-3 `curl -L https://github.com/golang-migrate/migrate/releases/download/v4.17.1/migrate.linux-amd64.tar.gz | tar xvz` 環境に合わせて要変更  
+3 `curl -L https://github.com/golang-migrate/migrate/releases/download/v4.17.1/migrate.linux-amd64.tar.gz | tar xvz migrate` 環境に合わせて要変更  
 4 `docker compose up -d`  
 5 `docker-compose exec app ./migrate -database "DBURL2" -path ./db/migrations up` DBURLは対応したものを
 
