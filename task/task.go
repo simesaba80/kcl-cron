@@ -6,26 +6,31 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/simesaba80/go-cron/crud"
 	"github.com/simesaba80/go-cron/db"
 )
 
 func GetAllUser() {
 	// ここに定期実行したい処理を書く
+	//リクエスト先のURLの指定とGETリクエストの送信
 	client := &http.Client{}
 	resp, err := client.Get("http://app:8080/user")
 	if err != nil {
 		panic(err)
 	}
 	defer resp.Body.Close()
+	//bodyデータの読み取り
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		panic(err)
 	}
+	//json形式の[]byteから構造体へパース
 	users := []db.User{}
 	err = json.Unmarshal(body, &users)
 	if err != nil {
 		panic(err)
 	}
+	crud.SaveUsersData(users)
 	fmt.Println(resp.Status)
 	fmt.Println(users)
 }
