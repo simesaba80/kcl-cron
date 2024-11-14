@@ -14,9 +14,12 @@ import (
 var DB *bun.DB
 var SqlDB *sql.DB
 
+var PostDB *bun.DB
+var PostSqlDB *sql.DB
+
 func Connectdb() {
 	// Bunを使ってDB接続
-	dsn := utils.DBURL
+	dsn := utils.DBURL1
 	SqlDB = sql.OpenDB(pgdriver.NewConnector(pgdriver.WithDSN(dsn)))
 	DB = bun.NewDB(SqlDB, pgdialect.New())
 	if err := SqlDB.Ping(); err != nil {
@@ -24,6 +27,13 @@ func Connectdb() {
 		return
 	}
 
+	dsnp := utils.DBURL2
+	PostSqlDB = sql.OpenDB(pgdriver.NewConnector(pgdriver.WithDSN(dsnp)))
+	PostDB = bun.NewDB(PostSqlDB, pgdialect.New())
+	if err := PostSqlDB.Ping(); err != nil {
+		log.Fatalf("Failed to connect to database: %v", err)
+		return
+	}
 	// クエリーフックを追加
 	DB.AddQueryHook(bundebug.NewQueryHook(
 		bundebug.WithVerbose(true),
