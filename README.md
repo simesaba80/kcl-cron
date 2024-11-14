@@ -6,7 +6,7 @@
 2 `cd kcl-cron`  
 3 `curl -L https://github.com/golang-migrate/migrate/releases/download/v4.17.1/migrate.linux-amd64.tar.gz | tar xvz` 環境に合わせて要変更  
 4 `docker compose up -d`  
-5 `docker-compose exec app ./migrate -database "DBURL2" -path ./db/migrations up`  
+5 `docker-compose exec app ./migrate -database "DBURL2" -path ./db/migrations up` DBURLは対応したものを
 
 ## タスクを追加する時は
 
