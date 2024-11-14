@@ -7,24 +7,26 @@ services:
     tty: true
     ports:
       - 8000:8000
+    depends_on:
+      - postdb
     volumes:
       - .:/app
 
-#   db:
-#     container_name: db
-#     build: 
-#       context: .
-#       dockerfile: ./docker/db.dockerfile
-#     ports:
-#       - 5432:5432
-#     volumes:
-#       - db-store:/var/lib/postgresql/data
-#     environment:
-#       POSTGRES_USER: 'postgres'
-#       POSTGRES_PASSWORD: 'postgres'
-#       POSTGRES_DB: 'postgres'
-# volumes:
-#   db-store:
+  postdb:
+    container_name: postdb
+    build: 
+      context: .
+      dockerfile: ./docker/db.dockerfile
+    ports:
+      - 5433:5432
+    volumes:
+      - db-store:/var/lib/postgresql/postdata
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_DB: 'postgres'
+volumes:
+  db-store:
 
 networks:
   default:

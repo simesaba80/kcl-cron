@@ -10,11 +10,11 @@ import (
 	"github.com/simesaba80/go-cron/db"
 )
 
-func GetAllUser() {
+func TaskName() {
 	// ここに定期実行したい処理を書く
 	//リクエスト先のURLの指定とGETリクエストの送信
 	client := &http.Client{}
-	resp, err := client.Get("http://app:8080/user")
+	resp, err := client.Get("http://url/to/request")
 	if err != nil {
 		panic(err)
 	}
@@ -24,13 +24,16 @@ func GetAllUser() {
 	if err != nil {
 		panic(err)
 	}
-	//json形式の[]byteから構造体へパース
+	//json形式の[]byteから構造体へパース(構造体はdb/model.goに定義)
+	//パース先は構造体単体でもスライスでもOK
 	users := []db.User{}
 	err = json.Unmarshal(body, &users)
 	if err != nil {
 		panic(err)
 	}
+	//crudにSQLを定義して関数呼び出しで保存
 	crud.SaveUsersData(users)
+	//ログ出力
 	fmt.Println(resp.Status)
 	fmt.Println(users)
 }

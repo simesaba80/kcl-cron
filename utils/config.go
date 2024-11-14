@@ -8,7 +8,8 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var DBURL string
+var DBURL1 string
+var DBURL2 string
 
 func LoadConfig() {
 	err := godotenv.Load(".env")
@@ -16,6 +17,8 @@ func LoadConfig() {
 		log.Fatal("Error loading .env file")
 	}
 
-	DBURL = os.Getenv("DBURL")
-	fmt.Println("DBURL: ", DBURL)
+	DBURL1 = os.Getenv("DBURL1")
+	DBURL2 = os.Getenv("DBURL2")
+	fmt.Println("DBURL: ", DBURL1)
+	fmt.Println("DBURL: ", DBURL2)
 }
