@@ -1,9 +1,12 @@
 package task
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
+
+	"github.com/simesaba80/go-cron/db"
 )
 
 func GetAllUser() {
@@ -18,6 +21,11 @@ func GetAllUser() {
 	if err != nil {
 		panic(err)
 	}
+	users := []db.User{}
+	err = json.Unmarshal(body, &users)
+	if err != nil {
+		panic(err)
+	}
 	fmt.Println(resp.Status)
-	fmt.Println(string(body))
+	fmt.Println(users)
 }
