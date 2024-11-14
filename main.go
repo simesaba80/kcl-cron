@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-co-op/gocron"
 	"github.com/simesaba80/go-cron/db"
+	"github.com/simesaba80/go-cron/task"
 	"github.com/simesaba80/go-cron/utils"
 )
 
@@ -42,6 +43,7 @@ func main() {
 	db.Connectdb()
 	defer db.DB.Close()
 	scheduler := gocron.NewScheduler(time.Local)
-	scheduler.Every(5).Second().Do(funcC) // 30分に1回
+	scheduler.Every(5).Second().Do(funcC)            // 30分に1回
+	scheduler.Every(15).Second().Do(task.GetAllUser) // 30秒に1回
 	scheduler.StartBlocking()
 }
