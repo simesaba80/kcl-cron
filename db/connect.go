@@ -38,4 +38,7 @@ func Connectdb() {
 	DB.AddQueryHook(bundebug.NewQueryHook(
 		bundebug.WithVerbose(true),
 	))
+	PostDB.AddQueryHook(bundebug.NewQueryHook(
+		bundebug.WithVerbose(true),
+	))
 }
