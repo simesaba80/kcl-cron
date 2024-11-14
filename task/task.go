@@ -25,6 +25,8 @@ func GetAllUser() {
 		panic(err)
 	}
 	//json形式の[]byteから構造体へパース
+	//構造体のフィールドに`json:"name"`のようにタグをつけることで、jsonのキーと構造体のフィールドを紐付ける(タグがなければフィールド名と同じキーを探す)
+	//`json:"-"のフィールドは無視される`
 	users := []db.User{}
 	err = json.Unmarshal(body, &users)
 	if err != nil {
