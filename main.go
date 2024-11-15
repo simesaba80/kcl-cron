@@ -42,8 +42,9 @@ func main() {
 	utils.LoadConfig()
 	db.Connectdb()
 	defer db.DB.Close()
+	task.UpdateAccessToken()
 	scheduler := gocron.NewScheduler(time.Local)
 	scheduler.Every(5).Second().Do(funcC)            // 30分に1回
-	scheduler.Every(15).Second().Do(task.GetAllUser) // 30秒に1回
+	scheduler.Every(15).Minute().Do(task.GetAllUser) // 30秒に1回
 	scheduler.StartBlocking()
 }
