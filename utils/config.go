@@ -10,6 +10,7 @@ import (
 
 var DBURL1 string
 var DBURL2 string
+var SLEEPURL string
 
 func LoadConfig() {
 	err := godotenv.Load(".env")
@@ -19,6 +20,8 @@ func LoadConfig() {
 
 	DBURL1 = os.Getenv("DBURL1")
 	DBURL2 = os.Getenv("DBURL2")
+	SLEEPURL = os.Getenv("SLEEPURL")
 	fmt.Println("DBURL: ", DBURL1)
 	fmt.Println("DBURL: ", DBURL2)
+	fmt.Println("SLEEPURL: ", SLEEPURL)
 }
