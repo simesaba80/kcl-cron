@@ -30,5 +30,5 @@ volumes:
 
 networks:
   default:
-    name: kcl-backend_default
+    name: kcl-back_default
     external: true
