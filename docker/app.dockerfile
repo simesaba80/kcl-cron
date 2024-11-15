@@ -24,6 +24,10 @@ RUN go build -o /bin/main main.go
 FROM alpine:latest
 # 作業ディレクトリの定義
 WORKDIR /app
+RUN apk --update add tzdata && \
+    cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+    apk del tzdata && \
+    rm -rf /var/cache/apk/*
 # Build stage からビルドされた main だけを Run stage にコピーする。（重要）
 COPY --from=builder /bin/main /bin/main
 # ローカルの .env をコンテナ側の app フォルダにコピーする
