@@ -7,6 +7,8 @@ height int,
 weight int,
 age int,
 job varchar(50),
+access_token varchar(100),
+refresh_token varchar(100),
 created_at timestamp default current_timestamp
 );
 
@@ -33,14 +35,18 @@ light_sleep int,
 rem_sleep int,
 wake int,
 date date not null,
-created_at timestamp default current_timestamp  
+created_at timestamp default current_timestamp
 );
 
 create table if not exists meal(
 id serial primary key,
 user_id varchar(100) not null,
 meal_name varchar(100),
-calorie_per_100g int,
+calories int,
+protein real,
+fat real,
+carbohydrates real,
+salt real,
 date date not null,
-created_at timestamp default current_timestamp  
+created_at timestamp default current_timestamp
 );

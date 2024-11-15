@@ -17,6 +17,8 @@ type User struct {
 	Weight        int       `bun:"weight,nullzero"`
 	Age           int       `bun:"age,nullzero"`
 	Job           string    `bun:"job,nullzero"`
+	AccessToken   string    `bun:"access_token"`
+	RefreshToken  string    `bun:"refresh_token"`
 	CreatedAt     time.Time `bun:"created_at"`
 }
 
@@ -52,11 +54,15 @@ type Sleep struct {
 
 type Meal struct {
 	// Meal is a struct that represents a user's meal data.
-	bun.BaseModel  `bun:"table:meal,select:meal"`
-	ID             int       `bun:"id,pk,autoincrement"`
-	UserID         string    `bun:"user_id,notnull"`
-	MealName       string    `bun:"meal_name,notnull"`
-	CaloriePer100G int       `bun:"calorie_per_100g,notnull"`
-	Date           string    `bun:"date,notnull"`
-	CreatedAt      time.Time `bun:"created_at"`
+	bun.BaseModel `bun:"table:meal,select:meal"`
+	ID            int       `bun:"id,pk,autoincrement"`
+	UserID        string    `bun:"user_id,notnull"`
+	MealName      string    `bun:"meal_name,notnull"`
+	Calories      int       `bun:"calories,notnull"`
+	Protein       float64   `bun:"protein,notnull"`
+	Fat           float64   `bun:"fat,notnull"`
+	Carbohydrates float64   `bun:"carbohydrates,notnull"`
+	Salt          float64   `bun:"salt,notnull"`
+	Date          string    `bun:"date,notnull"`
+	CreatedAt     time.Time `bun:"created_at"`
 }
