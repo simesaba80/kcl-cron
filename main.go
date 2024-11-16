@@ -24,7 +24,8 @@ func main() {
 	db.Connectdb()
 	defer db.DB.Close()
 	scheduler := gocron.NewScheduler(time.Local)
+	scheduler.Every(2).Second().Do(funcC)               // 1分に1回
 	scheduler.Every(15).Minute().Do(task.SaveActivity)  // 30分に1回
 	scheduler.Every(15).Minute().Do(task.SaveSleepData) // 30秒に1回
-	// scheduler.StartBlocking()
+	scheduler.StartBlocking()
 }
