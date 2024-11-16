@@ -46,7 +46,7 @@ func Test() {
 		panic(err)
 	}
 	activitiesData := db.Activities{
-		UserID:   "C5N3BG",
+		UserID:   fitbitUserData[0].FitbitUserID,
 		Calories: responsData.Summary.CaloriesOut,
 		Steps:    responsData.Summary.Steps,
 	}
