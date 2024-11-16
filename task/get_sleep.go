@@ -62,7 +62,8 @@ func SaveSleepData() {
 		Wake:       responsData.Summary.Stages.Wake,
 		Date:       "2024-11-16",
 	}
-	fmt.Println(sleep)
+	result := crud.AddSleep(sleep)
+	fmt.Println(result)
 	fmt.Println(resp.Status)
 	// fmt.Println(meal)
 }

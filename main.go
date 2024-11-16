@@ -46,5 +46,6 @@ func main() {
 	// scheduler.Every(15).Minute().Do(task.GetAllUser) // 30秒に1回
 	// scheduler.StartBlocking()
 	// task.SaveSleepData()
-	task.Test()
+	task.SaveActivity()
+	task.SaveSleepData()
 }
