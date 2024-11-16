@@ -10,7 +10,7 @@ import (
 	"github.com/simesaba80/go-cron/db"
 )
 
-func Test() {
+func SaveActivity() {
 	// ここに定期実行したい処理を書く
 	fitbitUserData := crud.GetFitbitUserID()
 	fmt.Println(fitbitUserData[0])
@@ -46,11 +46,12 @@ func Test() {
 		panic(err)
 	}
 	activitiesData := db.Activities{
-		UserID:   "C5N3BG",
+		UserID:   fitbitUserData[0].FitbitUserID,
 		Calories: responsData.Summary.CaloriesOut,
 		Steps:    responsData.Summary.Steps,
 	}
-	fmt.Println(activitiesData)
+	result := crud.AddActivities(activitiesData)
+	fmt.Println(result)
 
 	fmt.Println(resp.Status)
 }
