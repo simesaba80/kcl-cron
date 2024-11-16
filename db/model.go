@@ -25,7 +25,7 @@ type User struct {
 
 type Activities struct {
 	// Momentum is a struct that represents a user's Momentum data.
-	bun.BaseModel `bun:"table:activities,select:momentum"`
+	bun.BaseModel `bun:"table:activities,select:activities"`
 	ID            int       `bun:"id,pk,autoincrement"`
 	UserID        string    `bun:"user_id,notnull"`
 	Steps         int       `bun:"steps,notnull"`
