@@ -10,7 +10,7 @@ import (
 	"github.com/simesaba80/go-cron/db"
 )
 
-func Test() {
+func SaveSleepData() {
 	// ここに定期実行したい処理を書く
 	fitbitUserData := crud.GetFitbitUserID()
 	fmt.Println(fitbitUserData[0])
@@ -49,18 +49,10 @@ func Test() {
 	//json形式の[]byteから構造体へパース
 	//構造体のフィールドに`json:"name"`のようにタグをつけることで、jsonのキーと構造体のフィールドを紐付ける(タグがなければフィールド名と同じキーを探す)
 	//`json:"-"のフィールドは無視される`
-	// jsonBytes := []byte(body)
-	// err = json.Unmarshal(body, &jsonBytes)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// crud.SaveUsersData(meal)
 	responsData := bodySleep{}
 	if err := json.Unmarshal(body, &responsData); err != nil {
 		panic(err)
 	}
-	fmt.Println("body: " + string(body))
-	fmt.Println("responsData: ", responsData)
 	sleep := db.Sleep{
 		UserID:     "C5N3BG",
 		Minutes:    responsData.Summary.TotalMinutesAsleep,
