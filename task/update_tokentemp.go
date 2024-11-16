@@ -6,17 +6,20 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/simesaba80/go-cron/crud"
 	"github.com/simesaba80/go-cron/db"
 )
 
 func Test() {
 	// ここに定期実行したい処理を書く
+	fitbitUserData := crud.GetFitbitUserID()
+	fmt.Println(fitbitUserData[0])
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://api.fitbit.com/1.2/user/C5N3BG/sleep/date/2024-11-16.json", nil)
+	req, err := http.NewRequest("GET", "https://api.fitbit.com/1.2/user/"+fitbitUserData[0].FitbitUserID+"/sleep/date/2024-11-16.json", nil)
 	if err != nil {
 		panic(err)
 	}
-	req.Header.Set("authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1BSVDQiLCJzdWIiOiJDNU4zQkciLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IHJociByc2xlIiwiZXhwIjoxNzMxNzk5ODA5LCJpYXQiOjE3MzE3NzEwMDl9.vkGsFDrCNYvklvZ-Nqh7MyOtec1tV8RBzSOJexF5VWk")
+	req.Header.Set("authorization", "Bearer "+fitbitUserData[0].AccessToken)
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := client.Do(req)
 	if err != nil {
@@ -60,7 +63,7 @@ func Test() {
 	fmt.Println("responsData: ", responsData)
 	sleep := db.Sleep{
 		UserID:     "C5N3BG",
-		Hours:      responsData.Summary.TotalMinutesAsleep,
+		Minutes:    responsData.Summary.TotalMinutesAsleep,
 		DeepSleep:  responsData.Summary.Stages.Deep,
 		LightSleep: responsData.Summary.Stages.Light,
 		RemSleep:   responsData.Summary.Stages.Rem,
