@@ -42,9 +42,7 @@ type Sleep struct {
 	bun.BaseModel `bun:"table:sleep,select:sleep" json:"-"`
 	ID            int       `bun:"id,pk,autoincrement" json:"id"`
 	UserID        string    `bun:"user_id,notnull" json:"user_id"`
-	Hours         int       `bun:"hours,notnull" json:"hours"`
-	StartedAt     time.Time `bun:"started_at,notnull" json:"started_at"`
-	EndedAt       time.Time `bun:"ended_at,notnull" json:"ended_at"`
+	Minutes       int       `bun:"hours,notnull" json:"minutes"`
 	DeepSleep     int       `bun:"deep_sleep,notnull" json:"deep_sleep"`
 	LightSleep    int       `bun:"light_sleep,notnull" json:"light_sleep"`
 	RemSleep      int       `bun:"rem_sleep,notnull" json:"rem_sleep"`

@@ -28,9 +28,7 @@ created_at timestamp default current_timestamp
 create table if not exists sleep(
 id serial primary key,
 user_id varchar(100) not null,
-hours int,
-started_at timestamp,
-ended_at timestamp,
+minutes int,
 deep_sleep int,
 light_sleep int,
 rem_sleep int,
