@@ -66,3 +66,9 @@ type Meal struct {
 	Date          string    `bun:"date,notnull" json:"date"`
 	CreatedAt     time.Time `bun:"created_at" json:"created_at"`
 }
+
+type ToGetFitbitData struct {
+	bun.BaseModel `bun:"table:users,select:users" json:"-"`
+	FitbitUserID  string `bun:"fitbit_user_id" json:"fitbit_user_id"`
+	AccessToken   string `bun:"access_token" json:"access_token"`
+}
