@@ -45,8 +45,9 @@ func SaveActivity() {
 	if err := json.Unmarshal(body, &responsData); err != nil {
 		panic(err)
 	}
+	user, _ := crud.GetUserByFitbitUserID(fitbitUserData[0].FitbitUserID)
 	activitiesData := db.Activities{
-		UserID:   fitbitUserData[0].FitbitUserID,
+		UserID:   user.UID,
 		Calories: responsData.Summary.CaloriesOut,
 		Steps:    responsData.Summary.Steps,
 	}
