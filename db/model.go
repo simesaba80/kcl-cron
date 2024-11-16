@@ -11,6 +11,7 @@ type User struct {
 	bun.BaseModel `bun:"table:users,select:users" json:"-"`
 	ID            int       `bun:"id,pk,autoincrement" json:"id"`
 	UID           string    `bun:"uid,unique,notnull" json:"uid"`
+	FitbitUserID  string    `bun:"fitbit_user_id" json:"fitbit_user_id"`
 	Name          string    `bun:"name,notnull" json:"name"`
 	Sex           string    `bun:"sex,notnull" json:"sex"`
 	Height        int       `bun:"height,nullzero" json:"height"`
@@ -63,6 +64,7 @@ type Meal struct {
 	Fat           float64   `bun:"fat,notnull" json:"fat"`
 	Carbohydrates float64   `bun:"carbohydrates,notnull" json:"carbohydrates"`
 	Salt          float64   `bun:"salt,notnull" json:"salt"`
+	Calcium       float64   `bun:"calcium,notnull" json:"calcium"`
 	Date          string    `bun:"date,notnull" json:"date"`
 	CreatedAt     time.Time `bun:"created_at" json:"created_at"`
 }

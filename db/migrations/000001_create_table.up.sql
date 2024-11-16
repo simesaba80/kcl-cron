@@ -1,6 +1,7 @@
 create table if not exists users(
 id serial primary key,
-uid varchar(100) not null unique,
+uid varchar(100),
+fitbit_user_id varchar(10),
 name varchar(20) not null,
 sex varchar(5) not null,
 height int,
@@ -47,6 +48,7 @@ protein real,
 fat real,
 carbohydrates real,
 salt real,
+calcium real,
 date date not null,
 created_at timestamp default current_timestamp
 );
