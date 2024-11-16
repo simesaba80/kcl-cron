@@ -53,8 +53,9 @@ func SaveSleepData() {
 	if err := json.Unmarshal(body, &responsData); err != nil {
 		panic(err)
 	}
+	user, _ := crud.GetUserByFitbitUserID(fitbitUserData[0].FitbitUserID)
 	sleep := db.Sleep{
-		UserID:     "C5N3BG",
+		UserID:     user.UID,
 		Minutes:    responsData.Summary.TotalMinutesAsleep,
 		DeepSleep:  responsData.Summary.Stages.Deep,
 		LightSleep: responsData.Summary.Stages.Light,
